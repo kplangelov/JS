@@ -1,0 +1,17 @@
+Function inside the object = Method.
+
+Built in: 
+console.log() - console is object , log is a Method. (function)
+math.random()   - same as console.log()
+
+
+JSON 
+
+Javascript object notation
+
+ALL PROPERTIES AND VALUES NEED  TO BE IN " IN JASON. LIKE "NAME" : "KALATA"
+AND CANT USE FUNCTIONS IN JSON.
+
+WE USE JSON WHEN WE SEND DATA BETWEEN COMPUTERS
+
+WHEN WE STORE DATA.

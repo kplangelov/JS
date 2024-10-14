@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body class="bg-dark text-white">
+
+    <h2 class="h3">Rock Paper Scissors</h2>
+
+    <img src="r.png" width="100" onclick="
+         pcCh = pcChoice();
+        playGame(1, pcCh); //userChoice = 1 (Rock)
+        showImgResults(1, pcCh);
+    ">
+    <img src="s.png" width="100" onclick="
+    pcCh = pcChoice();
+        playGame(2, pcCh); //userChoice = 2 (Scissors)
+        showImgResults(2, pcCh);
+    ">
+    <img src="p.png" width="100" onclick="
+    pcCh = pcChoice();
+        playGame(3, pcCh); //userChoice = 3 (Paper)
+        showImgResults(3, pcCh);
+        ">
+
+    <div>
+        <img id="user-image" width="100">
+        <img id="pc-image" width="100">
+    </div>
+
+    <script>
+
+        let pcCh = pcChoice();
+
+        const image = document.getElementById('user-image');
+        const pcImage = document.getElementById('pc-image');
+
+        function showImgResults(userChoice, pcChoice) {
+            if (choice(userChoice) === 'Rock') {
+                image.src = 'r.png';
+            }
+
+            if (choice(userChoice) === 'Scissors') {
+                image.src = 's.png';
+            }
+
+            if (choice(userChoice) === 'Paper') {
+                image.src = 'p.png';
+            }
+
+            if (choice(pcChoice) === 'Rock') {
+                pcImage.src = 'r.png';
+            }
+
+            if (choice(pcChoice) === 'Scissors') {
+                pcImage.src = 's.png';
+            }
+
+            if (choice(pcChoice) === 'Paper') {
+                pcImage.src = 'p.png';
+            }
+
+        }
+
+        const gameScores = {
+            ties: 0,
+            wins: 0,
+            loses: 0
+        }
+
+        // Rock - 1
+        // Scissors - 2
+        // Paper - 3
+
+        function choice(choice) {
+            if (choice === 1) {
+                return 'Rock';
+            } else if (choice === 2) {
+                return 'Scissors';
+            } else if (choice === 3) {
+                return 'Paper';
+            } else {
+                //'Please check your userChoice at the function playGame().';
+                return 0;
+            }
+        }
+
+        function pcChoice() {
+            return Math.floor((Math.random()) * 3) + 1;
+        }
+
+        function playGame(userChoice, pcChoice) {
+
+            const userCh = choice(userChoice);
+            const pcCh = choice(pcChoice);
+            let result = '';
+            if (userCh === 'Rock' && pcCh === 'Rock') {
+                result = 'Tie.';
+            }
+            else if (userCh === 'Rock' && pcCh === 'Scissors') {
+                result = 'User win.';
+            }
+            else if (userCh === 'Rock' && pcCh === 'Paper') {
+                result = 'Pc win.';
+            }
+
+            else if (userCh === 'Scissors' && pcCh === 'Rock') {
+                result = 'Pc win.';
+            }
+            else if (userCh === 'Scissors' && pcCh === 'Scissors') {
+                result = 'Tie.';
+            }
+            else if (userCh === 'Scissors' && pcCh === 'Paper') {
+                result = 'User win.';
+            }
+
+            else if (userCh === 'Paper' && pcCh === 'Rock') {
+                result = 'User win.';
+            }
+            else if (userCh === 'Paper' && pcCh === 'Scissors') {
+                result = 'Pc win.';
+            }
+            else if (userCh === 'Paper' && pcCh === 'Paper') {
+                result = 'Tie.';
+            }
+            else {
+                result = 'Error.';
+            }
+
+            if (result === 'Tie.') {
+                gameScores.ties++;
+            } else if (result === 'User win.') {
+                gameScores.wins++;
+            } else if (result === 'Pc win.') {
+                gameScores.loses++;
+            } else {
+                console.log('Error with the object, check your code.');
+            }
+
+            alert(`${result} - Ties: ${gameScores.ties}, Wins: ${gameScores.wins}, Loses: ${gameScores.loses} `);
+        }
+
+    </script>
+</body>
+
+</html>
