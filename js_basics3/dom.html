@@ -11,32 +11,20 @@
 
 <body class="bg-dark text-white">
 
-<script>
-    
-    const product = {
-        name: 'toilet paper',
-        price: '500'
-    }
-
-    //console.log(localStorage.getItem('Name'));
-
-    console.log(localStorage.getItem('product'));
-
-    const jsonStr = JSON.stringify(product);
-
-    console.log(jsonStr);
-
-    const toJsObj = JSON.parse(jsonStr);
-
-    console.log(toJsObj);
-
-    localStorage.setItem('Name', 'Kaloyan');
-
-    localStorage.setItem('product', jsonStr);
+    <button id="sendmsg">Hello btn</button>
 
 
+    <script>
 
-</script>    
+        const btn = document.querySelector('button#sendmsg');
+
+        btn.addEventListener("click", () => {
+            btn.innerHTML = 'Hello btn via JS';
+        });
+
+        console.log(btn);
+
+    </script>
 </body>
 
 </html>

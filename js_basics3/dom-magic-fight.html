@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body class="bg-dark text-white">
+
+    <div class="container mt-5">
+        <h3 class="">Magic Fight</h3>
+
+        <button id="js-earth">Earth</button>
+        <button id="js-water">Water</button>
+        <button id="js-fire">Fire</button>
+
+        <p class="mt-5" id="js-moves"></p>
+        <p id="js-winner"></p>
+
+        <p id="js-scores"></p>
+
+        <button id="js-reset-scores">Reset Scores</button>
+
+    </div>
+
+    <script>
+
+        const scores = JSON.parse(localStorage.getItem('scores')) || {
+            ties: 0,
+            userWins: 0,
+            pcWins: 0
+        }
+
+        showScores();
+
+        function pcMove() {
+
+            const rnd = Math.floor((Math.random()) * 3) + 1;
+
+            if (rnd === 1) {
+                return 'earth';
+            } else if (rnd === 2) {
+                return 'water';
+            } else if (rnd === 3) {
+                return 'fire';
+            }
+
+            return 'error';
+        }
+
+        
+        function resetScores()
+        {
+            scores.ties = 0;
+            scores.userWins = 0;
+            scores.pcWins = 0;
+            localStorage.removeItem('scores');
+        }
+
+        const earthBtn = document.querySelector('#js-earth');
+        const waterBtn = document.querySelector('#js-water');
+        const fireBtn = document.querySelector('#js-fire');
+        const resetScoresBtn = document.querySelector('#js-reset-scores');
+
+        earthBtn.addEventListener('click', () => {
+            playGame('earth', pcMove());
+        });
+
+        waterBtn.addEventListener('click', () => {
+            playGame('water', pcMove());
+        });
+
+        fireBtn.addEventListener('click', () => {
+            playGame('fire', pcMove());
+        });
+
+        resetScoresBtn.addEventListener('click', () => {
+            resetScores();
+            showScores();
+        });
+
+
+        function playGame(playerMove, pcMove) {
+
+            let fightResult = '';
+
+            if (playerMove === 'earth') {
+                if (pcMove === 'earth') {
+                    fightResult = 'tie';
+                }
+                else if (pcMove === 'water') {
+                    fightResult = 'user';
+                }
+                else if (pcMove === 'fire') {
+                    fightResult = 'pc';
+                }
+            }
+
+            else if (playerMove === 'water') {
+                if (pcMove === 'water') {
+                    fightResult = 'tie';
+                }
+                else if (pcMove === 'fire') {
+                    fightResult = 'user';
+                }
+                else if (pcMove === 'earth') {
+                    fightResult = 'pc';
+                }
+            }
+
+            else if (playerMove === 'fire') {
+                if (pcMove === 'fire') {
+                    fightResult = 'tie';
+                }
+                else if (pcMove === 'water') {
+                    fightResult = 'user';
+                }
+                else if (pcMove === 'earth') {
+                    fightResult = 'pc';
+                }
+            }
+
+            const movesParagraph = document.querySelector('#js-moves');
+
+            movesParagraph.textContent = `You: ${playerMove} Vs. PC: ${pcMove}`;
+
+            const winnerParagraph = document.querySelector('#js-winner');
+            if (fightResult === 'user') {
+                winnerParagraph.textContent = `Congratulations! User you win!`;
+                scores.userWins++;
+            }
+            else if (fightResult === 'pc') {
+                winnerParagraph.textContent = 'Sorry user! You lose. :(';
+                scores.pcWins++;
+            }
+            else if (fightResult === 'tie') {
+                winnerParagraph.textContent = 'Tie! :)';
+                scores.ties++;
+            }
+            else {
+                winnerParagraph.textContent = 'You have some error in the code, please check! :)';
+            }
+
+            localStorage.setItem('scores', JSON.stringify(scores));
+
+            showScores();
+
+        }
+
+        function showScores()
+        {
+            const scoresParagraph = document.querySelector('#js-scores');
+            scoresParagraph.textContent = `User wins: ${scores.userWins}  PC wins ${scores.pcWins}  Ties: ${scores.ties}`;
+        }
+
+    </script>
+</body>
+
+</html>

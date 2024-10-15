@@ -15,3 +15,38 @@ AND CANT USE FUNCTIONS IN JSON.
 WE USE JSON WHEN WE SEND DATA BETWEEN COMPUTERS
 
 WHEN WE STORE DATA.
+
+---------------------
+    const product = {
+        name: 'toilet paper',
+        price: '500'
+    }
+
+    console.log(product.name);
+
+    const jsonStr = JSON.stringify(product);
+
+    console.log(jsonStr);
+
+    const toJsObj = JSON.parse(jsonStr);
+
+    console.log(toJsObj);
+----------------------
+
+localStorage object - to save values 
+
+localStorage.setItem();
+
+localStorage.setItem('Message', 'Hello');
+localStorage.getItem('Message');
+
+localStorage only support strings (can use Json in);
+
+localStorage.removeItem() - to remove str;
+
+AUTO BOXING 
+
+even strings has properties and methods - they are special objects. - due to auto boxing.
+
+        console.log(`word: Kalo has ${'Kalo'.length} characters.` );
+        console.log(`word: Kalo to upper ${'Kalo'.toUpperCase()}.` );
