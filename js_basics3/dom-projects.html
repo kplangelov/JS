@@ -14,6 +14,14 @@
     <h3>Youtube Subscribe button</h3>
 
     <button id="js-ytsubscribe">Subscribe</button>
+    <p>
+        <a href="dom-magic-fight.html">Magic Fight Game</a>
+    </p>
+
+    <h3>Amazon Shipping Calculator</h3>
+
+    <input type="text" id="js-text-input"> <span class="h2" id="js-dots-span"></span>
+    <p id="js-show-input-value"></p>
 
 
     <script>
@@ -21,18 +29,29 @@
         const btn = document.querySelector('button#js-ytsubscribe');
 
         btn.addEventListener("click", () => {
-           
-            if( btn.innerText === 'Subscribe')
-            {
-                 btn.innerText = 'Subscribed'
+
+            if (btn.innerText === 'Subscribe') {
+                btn.innerText = 'Subscribed'
             }
-            else 
-            {
+            else {
                 btn.innerText = 'Subscribe'
             }
         });
 
-        console.log(btn);
+        const inputText = document.querySelector('#js-text-input');
+        const dotsSpan = document.querySelector('#js-dots-span');
+        const showInpValue = document.querySelector('#js-show-input-value');
+        inputText.addEventListener("input", () => {
+
+            showInpValue.textContent = inputText.value;
+            if (inputText.value.length === 0 ) {
+                dotsSpan.innerHTML = '';
+            } else {
+                dotsSpan.innerHTML = '<img src="https://media1.tenor.com/m/FTJseOZiIXsAAAAC/typing-thinking.gif" width="100">';
+            }
+
+        });
+
 
     </script>
 </body>
