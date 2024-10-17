@@ -16,10 +16,14 @@
         [
             'watch youtube',
             'good podcasts',
+            'wash dishes',
             'clean code',
             'training',
             'life improvement'
-        ].forEach(function(value, index) {
+        ].forEach(function (value, index) {
+            if (value === 'wash dishes') {
+                return;
+            }
             console.log(index);
             console.log(value);
         });

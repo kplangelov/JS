@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body class="bg-dark text-white">
+
+    <div class="container mt-5">
+
+        <button class="btn btn-primary" id="js-btn-add-msg">Add</button>
+        <button class="btn btn-primary" id="js-btn-remove-msg">Remove</button>
+
+
+    </div>
+
+    <script>
+
+        let titleAppShowing = true;
+        let titleIntervalId;
+        let totalMsgs = 0;
+        let isCounterStarted = false;
+
+        const btnAddMsg = document.querySelector('#js-btn-add-msg');
+        const btnRmvMsg = document.querySelector('#js-btn-remove-msg');
+
+        btnAddMsg.addEventListener('click', () => {
+
+            totalMsgs++;
+            
+            if (!isCounterStarted) {
+                totalIntervalId = setInterval(function () {
+                    titleChange();
+                }, 1000);
+                isCounterStarted = true;
+            }
+        });
+
+        btnRmvMsg.addEventListener('click', () => {
+
+            totalMsgs--
+
+            if(totalMsgs === 0)
+            {
+                clearInterval(totalIntervalId);
+                isCounterStarted = false;
+                document.title = 'App';
+            }
+
+        });
+
+
+        function titleChange() {
+
+            if (document.title === 'App') {
+                document.title = `(${totalMsgs}) New Messages`;
+            } else {
+                document.title = 'App';
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
