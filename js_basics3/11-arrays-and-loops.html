@@ -16,6 +16,7 @@
 
     <script>
 
+        /*
         const myArray = [10, 20, 30];
         console.log(myArray);
 
@@ -24,9 +25,48 @@
         myArray.push('Kurtichka');
         myArray.splice(0, 1);
         console.log(myArray);
+        
+
+        const array1 = [1, 2, 3];
+        const array2 = array1;
+
+        array2.push(4);
+        console.log(array1);
+*/
+        const myArr = [512,512,123,321,321,4,5,6,7,8];
+
+        function unique(arr) {
+
+            const arrUniq = [];
+            const handled = [];
+
+            let counter = 0;
+
+            for (let i = 0; i < arr.length; i++) {
+
+                for (let j = 0; j < arr.length; j++) {
+
+                    if (arr[i] === arr[j]) {
+                        counter++;
+                    }
+
+                }
+
+                if (counter === 1) {
+                    arrUniq.push(arr[i]);
+                }
+                counter = 0;
+
+            }
+
+            console.log(arr);
+            console.log(arrUniq);
+        }
+
+        unique(myArr);
 
 
     </script>
 </body>
 
-</html>
+</html>0

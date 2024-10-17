@@ -1,3 +1,4 @@
+
 const jsInputToDoName = document.querySelector('#js-input-to-do-name');
 const jsBtnToDoAdd = document.querySelector('#js-btn-add-to-do');
 const jsToDoAddResult = document.querySelector('#js-to-do-add-result');
@@ -21,28 +22,40 @@ jsBtnToDoAdd.addEventListener('click', () => {
 function showToDoList() {
     jsToDoListShow.innerHTML = '';
     for (let i = 0; i < toDoList.length; i++) {
-        jsToDoListShow.innerHTML += `<div id="to-do-${i}">${toDoList[i]} 
-                                    <button onclick="deleteToDo(${i})">Delete</button>
-                                    </div>`;
+        const { name, dueDate } = toDoList[i];
+
+        jsToDoListShow.innerHTML += `<div>${name}</div>
+                                    <div>${dueDate}</div>
+                                    <button class="bg-danger text-white" onclick="deleteToDo(${i})">Delete</button>
+                                    `;
     }
 }
 
-function deleteToDo(n)
-{
+function deleteToDo(n) {
     toDoList.splice(n, 1);
     console.log(toDoList);
     showToDoList();
 }
 
 function addToDo() {
+
+    const inputToDoDueDate = document.querySelector('#js-input-to-do-due-date');
+
+    const name = jsInputToDoName.value;
+    const dueDate = inputToDoDueDate.value;
+
     if (jsInputToDoName.value.length > 2) {
-        toDoList.push(jsInputToDoName.value);
+        toDoList.push({
+            name,   // this is simillar to name: name
+            dueDate
+        }); // this is simillar to dueDate: dueDate);
+
         jsInputToDoName.value = '';
         jsToDoAddResult.textContent = '';
     }
     else {
         jsToDoAddResult.textContent = 'Error: minimum 2 characters in input.';
     }
-    console.log(toDoList);
+
     showToDoList();
 }
