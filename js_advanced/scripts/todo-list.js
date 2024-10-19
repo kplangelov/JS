@@ -21,19 +21,32 @@ jsBtnToDoAdd.addEventListener('click', () => {
 
 function showToDoList() {
 
-    jsToDoListShow.innerHTML = '';  
+    jsToDoListShow.innerHTML = '';
 
     toDoList.forEach(function (ToDoObject, index) {
 
         const { name, dueDate } = ToDoObject;
 
-        jsToDoListShow.innerHTML += `<div>${name}</div>
+        let html = `<div>${name}</div>
                                     <div>${dueDate}</div>
-                                    <button class="bg-danger text-white" onclick="deleteToDo(${index})">Delete</button>
+                                    <button class="bg-danger text-white 
+                                    js-todo-delete-btn">Delete</button>
                                     `;
 
+        jsToDoListShow.innerHTML += html;
+
     });
-}
+
+    document.querySelectorAll('.js-todo-delete-btn').forEach((deleteBtn, index) => {
+        deleteBtn.addEventListener('click', () => {
+            toDoList.splice(index, 1);
+            showToDoList();
+        });
+    });
+
+
+};
+
 
 
 function deleteToDo(n) {

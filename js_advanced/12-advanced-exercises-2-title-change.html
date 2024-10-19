@@ -32,9 +32,9 @@
         btnAddMsg.addEventListener('click', () => {
 
             totalMsgs++;
-            
+
             if (!isCounterStarted) {
-                totalIntervalId = setInterval(function () {
+                totalIntervalId = setInterval(() => {
                     titleChange();
                 }, 1000);
                 isCounterStarted = true;
@@ -43,13 +43,13 @@
 
         btnRmvMsg.addEventListener('click', () => {
 
-            totalMsgs--
+            totalMsgs--;
 
-            if(totalMsgs === 0)
-            {
+            if (totalMsgs < 1) {
                 clearInterval(totalIntervalId);
                 isCounterStarted = false;
                 document.title = 'App';
+                totalMsgs = 0;
             }
 
         });
